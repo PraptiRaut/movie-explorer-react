@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { getPopularMovies } from "../services/movieApi";
+import MovieCard from "../components/MovieCard";
+import SearchBar from "../components/SearchBar";
 
 function Home() {
 
@@ -17,9 +19,13 @@ function Home() {
     return (
         <div>
             <h1>Popular Movies</h1>
-            {movies.map((movie) => (
-                <p key={movie.id}>{movie.title}</p>
-            ))}
+            <SearchBar />
+            <div className="movies-grid">
+                {movies.map((movie) => (
+                    <MovieCard key={movie.id} movie={movie} />
+                ))}
+            </div>
+
         </div>
     );
 }
