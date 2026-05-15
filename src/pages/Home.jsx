@@ -4,7 +4,7 @@ import MovieCard from "../components/MovieCard";
 import SearchBar from "../components/SearchBar";
 
 
-function Home() {
+function Home({ favorites, addToFavorites }) {
 
     const [movies, setMovies] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
@@ -36,7 +36,7 @@ function Home() {
             <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} onSearch={handleSearch} />
             <div className="movies-grid">
                 {movies.map((movie) => (
-                    <MovieCard key={movie.id} movie={movie} />
+                    <MovieCard key={movie.id} movie={movie} favorites={favorites} addToFavorites={addToFavorites} />
                 ))}
             </div>
 
