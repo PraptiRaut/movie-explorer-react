@@ -6,7 +6,7 @@ import ErrorMessage from "../components/ErrorMessage";
 import Loader from "../components/Loader";
 
 
-function Home({ favorites, addToFavorites }) {
+function Home({ favorites, addToFavorites, recentlyViewed }) {
 
     const [movies, setMovies] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
@@ -58,8 +58,18 @@ function Home({ favorites, addToFavorites }) {
     }
     return (
         <div>
-            <h1>Popular Movies</h1>
             <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} onSearch={handleSearch} />
+            {recentlyViewed.length > 0 && (
+                <>
+                    <h2>Recently Viewed</h2>
+                    <div className="movies-grid">
+                        {recentlyViewed.map((movie) => (
+                            <MovieCard key={movie.id} movie={movie} favorites={favorites} addToFavorites={addToFavorites} />
+                        ))}
+                    </div>
+                </>
+            )}
+            <h2>Popular Movies</h2>
             <div className="movies-grid">
                 {movies.map((movie) => (
                     <MovieCard key={movie.id} movie={movie} favorites={favorites} addToFavorites={addToFavorites} />

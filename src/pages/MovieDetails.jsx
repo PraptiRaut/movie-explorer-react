@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getMoviesDetails } from "../services/movieApi";
 
-function MovieDetails() {
+function MovieDetails({ addToRecentlyViewed, }) {
 
     const { id } = useParams();
     const navigate = useNavigate();
@@ -12,6 +12,7 @@ function MovieDetails() {
         async function loadMovie() {
             const movieData = await getMoviesDetails(id);
             setMovie(movieData);
+            addToRecentlyViewed(movieData);
 
         }
         loadMovie();

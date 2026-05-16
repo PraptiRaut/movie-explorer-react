@@ -9,10 +9,16 @@ import { useEffect, useState } from "react";
 function App() {
 
   const [favorites, setFavorites] = useState([]);
+  const [recentlyViewed, setRecentlyViewed] = useState([]);
 
   useEffect(() => {
     const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
     setFavorites(storedFavorites);
+  }, []);
+
+  useEffect(() => {
+    const storedReccentlyViewed = JSON.parse(localStorage.getItem("recentlyViewed")) || [];
+    setRecentlyViewed(storedReccentlyViewed);
   }, []);
 
   function addToFavorites(movie) {
@@ -26,12 +32,20 @@ function App() {
     localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
   }
 
+  function addToRecentlyViewed(movie) {
+    const filteredMovies = recentlyViewed.filter((item) => item.id !== movie.id);
+    const updatedMovies = [movie, ...filteredMovies,].slice(0, 5);
+    setRecentlyViewed(updatedMovies);
+    localStorage.setItem("recentlyViewed", JSON.stringify(updatedMovies));
+
+  }
+
   return (
     <Routes>
       <Route element={<Layout />}>
-        <Route path="/" element={<Home favorites={favorites} addToFavorites={addToFavorites} />} />
+        <Route path="/" element={<Home favorites={favorites} addToFavorites={addToFavorites} recentlyViewed={recentlyViewed} />} />
         <Route path="/favorites" element={<Favorites favorites={favorites} addToFavorites={addToFavorites} />} />
-        <Route path="/movie/:id" element={<MovieDetails />} />
+        <Route path="/movie/:id" element={<MovieDetails addToRecentlyViewed={addToRecentlyViewed} />} />
       </Route>
 
       <Route path="*" element={<NotFound />} />
