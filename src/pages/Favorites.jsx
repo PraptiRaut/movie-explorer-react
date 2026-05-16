@@ -3,7 +3,12 @@ import MovieCard from "../components/MovieCard";
 function Favorites({ favorites, addToFavorites, removeFromFavorites }) {
 
     if (favorites.length === 0) {
-        return <h2>No favorite movies yet.</h2>
+        return (
+            <div className="empty-state">
+                <h2>No favorite movies yet.</h2>
+                <p>Start adding movies to your favorites list.</p>
+            </div>
+        );
     }
     return (
         <div>

@@ -162,3 +162,12 @@ button {
     padding: 2rem;
     color: crimson;
 }
+
+.empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+}
+
+.empty-state h2 {
+    margin-bottom: 1rem;
+}

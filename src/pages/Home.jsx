@@ -70,14 +70,22 @@ function Home({ favorites, addToFavorites, recentlyViewed, removeFromFavorites }
                 </>
             )}
             <h2>Popular Movies</h2>
-            <div className="movies-grid">
-                {movies.map((movie) => (
-                    <MovieCard key={movie.id} movie={movie} favorites={favorites} addToFavorites={addToFavorites} removeFromFavorites={removeFromFavorites} />
-                ))}
-            </div>
+            {movies.length === 0 ? (
+                <div className="empty-state">
+                    <h2>No movies found</h2>
+                    <p>Try searching for another movie.</p>
+                </div>
+            ) : (
+                <div className="movies-grid">
+                    {movies.map((movie) => (
+                        <MovieCard key={movie.id} movie={movie} favorites={favorites} addToFavorites={addToFavorites} removeFromFavorites={removeFromFavorites} />
+                    ))}
+                </div>
+            )}
 
         </div>
     );
 }
+
 
 export default Home;
