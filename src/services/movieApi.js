@@ -19,3 +19,10 @@ export async function searchMovies(query) {
     return data.results;
 
 }
+
+export async function getMoviesDetails(id) {
+    const response = await fetch(`${BASE_URL}/movie/${id}?api_key=${API_KEY}`);
+    const data = await response.json();
+    return data;
+
+}
