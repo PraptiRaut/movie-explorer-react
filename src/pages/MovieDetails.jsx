@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getMoviesDetails } from "../services/movieApi";
 
 function MovieDetails() {
 
     const { id } = useParams();
+    const navigate = useNavigate();
     const [movie, setMovie] = useState(null);
 
     useEffect(() => {
@@ -16,17 +17,30 @@ function MovieDetails() {
         loadMovie();
     }, [id]);
 
+    function handleBack() {
+        navigate(-1);
+    }
+
     if (!movie) {
         return <h2>Loading...</h2>
     }
 
+    const backdropUrl = `https://image.tmdb.org/t/p/original${movie.backdrop_path}`;
+    const posterUrl = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+
     return (
-        <div>
-            <h1>{movie.title}</h1>
-            <p>{movie.overview}</p>
-            <p>Release Date: {movie.release_date}</p>
-            <p>⭐ {movie.vote_average}</p>
-        </div>
+        <div className="movie-details">
+            <div className="movie-backdrop"
+                style={{ backgroundImage: `url(${backdropUrl})`, }}>
+                <div className="overplay">
+                    <img src={posterUrl} alt={movie.title} className="details-poster" />
+                    <div className="details-content">
+                        <button className="back-btn" onClick={handleBack}>← Back</button>
+                        <h1>{movie.title}</h1>
+                        <p>{movie.overview}</p>
+                        <p>Release Date: {movie.release_date}</p>
+                        <p>⭐ {movie.vote_average}</p>
+                    </div></div></div></div>
     );
 }
 

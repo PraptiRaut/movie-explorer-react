@@ -84,3 +84,53 @@ button {
     color: white;
     cursor: pointer;
 }
+
+.movie-details {
+    min-height: 100vh;
+    color: white;
+}
+
+.movie-backdrop {
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+}
+
+.overplay {
+    min-height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.details-poster {
+    width: 300px;
+    border-radius: 10px;
+}
+
+.details.content {
+    max-width: 700px;
+}
+
+.details.content h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.details.content p {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.back-btn {
+    margin-bottom: 1.5rem;
+    padding: 0.7rem, 1.2rem;
+    border: none;
+    border-radius: 5px;
+    background-color: crimson;
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+}

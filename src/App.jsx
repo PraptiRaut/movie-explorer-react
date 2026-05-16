@@ -16,6 +16,11 @@ function App() {
   }, []);
 
   function addToFavorites(movie) {
+    const alreadyExists = favorites.some((fav) => fav.id === movie.id);
+
+    if (alreadyExists) {
+      return;
+    }
     const updatedFavorites = [...favorites, movie];
     setFavorites(updatedFavorites);
     localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
