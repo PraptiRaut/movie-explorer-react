@@ -32,6 +32,12 @@ function App() {
     localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
   }
 
+  function removeFromFavorites(movieId) {
+    const updatedFavorites = favorites.filter((movie) => movie.id !== movieId);
+    setFavorites(updatedFavorites);
+    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+  }
+
   function addToRecentlyViewed(movie) {
     const filteredMovies = recentlyViewed.filter((item) => item.id !== movie.id);
     const updatedMovies = [movie, ...filteredMovies,].slice(0, 5);
@@ -43,8 +49,8 @@ function App() {
   return (
     <Routes>
       <Route element={<Layout />}>
-        <Route path="/" element={<Home favorites={favorites} addToFavorites={addToFavorites} recentlyViewed={recentlyViewed} />} />
-        <Route path="/favorites" element={<Favorites favorites={favorites} addToFavorites={addToFavorites} />} />
+        <Route path="/" element={<Home favorites={favorites} addToFavorites={addToFavorites} removeFromFavorites={removeFromFavorites} recentlyViewed={recentlyViewed} />} />
+        <Route path="/favorites" element={<Favorites favorites={favorites} addToFavorites={addToFavorites} removeFromFavorites={removeFromFavorites} />} />
         <Route path="/movie/:id" element={<MovieDetails addToRecentlyViewed={addToRecentlyViewed} />} />
       </Route>
 

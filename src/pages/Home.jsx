@@ -6,7 +6,7 @@ import ErrorMessage from "../components/ErrorMessage";
 import Loader from "../components/Loader";
 
 
-function Home({ favorites, addToFavorites, recentlyViewed }) {
+function Home({ favorites, addToFavorites, recentlyViewed, removeFromFavorites }) {
 
     const [movies, setMovies] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
@@ -64,7 +64,7 @@ function Home({ favorites, addToFavorites, recentlyViewed }) {
                     <h2>Recently Viewed</h2>
                     <div className="movies-grid">
                         {recentlyViewed.map((movie) => (
-                            <MovieCard key={movie.id} movie={movie} favorites={favorites} addToFavorites={addToFavorites} />
+                            <MovieCard key={movie.id} movie={movie} favorites={favorites} addToFavorites={addToFavorites} removeFromFavorites={removeFromFavorites} />
                         ))}
                     </div>
                 </>
@@ -72,7 +72,7 @@ function Home({ favorites, addToFavorites, recentlyViewed }) {
             <h2>Popular Movies</h2>
             <div className="movies-grid">
                 {movies.map((movie) => (
-                    <MovieCard key={movie.id} movie={movie} favorites={favorites} addToFavorites={addToFavorites} />
+                    <MovieCard key={movie.id} movie={movie} favorites={favorites} addToFavorites={addToFavorites} removeFromFavorites={removeFromFavorites} />
                 ))}
             </div>
 

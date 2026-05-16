@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-function MovieCard({ movie, favorites, addToFavorites }) {
+function MovieCard({ movie, favorites, addToFavorites, removeFromFavorites }) {
 
     const imageUrl = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
     const navigate = useNavigate();
@@ -12,7 +12,9 @@ function MovieCard({ movie, favorites, addToFavorites }) {
 
 
     function handleFavorite() {
-        if (!isFavorite) {
+        if (isFavorite) {
+            removeFromFavorites(movie.id)
+        } else {
             addToFavorites(movie);
 
         }
@@ -23,7 +25,7 @@ function MovieCard({ movie, favorites, addToFavorites }) {
             <div className="movie-info">
                 <h3 onClick={handleMovieClick}>{movie.title}</h3>
                 <p>⭐ {movie.vote_average}</p>
-                <button onClick={handleFavorite}>{isFavorite ? "❤️ Added" : "🤍 Favorite"}</button>
+                <button onClick={handleFavorite}>{isFavorite ? "❌ Remove" : "❤️ Favorite"}</button>
             </div>
         </div>
     );
