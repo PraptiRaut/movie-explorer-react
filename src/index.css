@@ -215,3 +215,33 @@ button {
     padding: 0.8rem 1.2rem;
     border-radius: 5px;
 }
+
+@media (max-width:768px) {
+    .overplay {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .details-poster {
+        width: 220px;
+    }
+
+    .details.content h1 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width:600px) {
+    .navbar {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .main-content {
+        padding: 1rem;
+    }
+}
+
+img {
+    max-width: 100%;
+}
