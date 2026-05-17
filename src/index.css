@@ -55,6 +55,11 @@ h2 {
     color: white;
 }
 
+.nav-links a.active {
+    background-color: crimson;
+    color: white;
+}
+
 .main-content {
     padding: 2rem;
 }
