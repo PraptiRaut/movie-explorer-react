@@ -7,29 +7,49 @@
 
 body {
     font-family: Arial, sans-serif;
-}
-
-nav {
-    background-color: black;
+    background-color: #141414;
     color: white;
-    padding: 1rem 2rem;
+    margin: 0;
+}
+
+.navbar {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
+    padding: 1rem 2rem;
+    background-color: #1c1c1c;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
-nav ul {
+.logo {
+    margin: 0;
+    color: crimson;
+}
+
+.nav-links {
     display: flex;
-    gap: 1rem;
+    gap: 1.5rem;
     list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
-nav a {
+.nav-links a {
     color: white;
     text-decoration: none;
+    font-weight: bold;
+    padding: 0.5rem 0.8rem;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-main {
+.nav-links a:hover {
+    background-color: crimson;
+    color: white;
+}
+
+.main-content {
     padding: 2rem;
 }
 
@@ -170,4 +190,28 @@ button {
 
 .empty-state h2 {
     margin-bottom: 1rem;
+}
+
+.not-found {
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.not-found h1 {
+    font-size: 6rem;
+    margin-bottom: 1rem;
+    color: crimson;
+}
+
+.home-btn {
+    margin-top: 1rem;
+    text-decoration: none;
+    background-color: crimson;
+    color: white;
+    padding: 0.8rem 1.2rem;
+    border-radius: 5px;
 }

@@ -52,9 +52,8 @@ function App() {
         <Route path="/" element={<Home favorites={favorites} addToFavorites={addToFavorites} removeFromFavorites={removeFromFavorites} recentlyViewed={recentlyViewed} />} />
         <Route path="/favorites" element={<Favorites favorites={favorites} addToFavorites={addToFavorites} removeFromFavorites={removeFromFavorites} />} />
         <Route path="/movie/:id" element={<MovieDetails addToRecentlyViewed={addToRecentlyViewed} />} />
+        <Route path="*" element={<NotFound />} />
       </Route>
-
-      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }
