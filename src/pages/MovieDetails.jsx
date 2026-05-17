@@ -33,7 +33,7 @@ function MovieDetails({ addToRecentlyViewed, }) {
         <div className="movie-details">
             <div className="movie-backdrop"
                 style={{ backgroundImage: `url(${backdropUrl})`, }}>
-                <div className="overplay">
+                <div className="overlay">
                     <img src={posterUrl} alt={movie.title} className="details-poster" />
                     <div className="details-content">
                         <button className="back-btn" onClick={handleBack}>← Back</button>

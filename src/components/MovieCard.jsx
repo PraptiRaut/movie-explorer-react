@@ -21,11 +21,20 @@ function MovieCard({ movie, favorites, addToFavorites, removeFromFavorites }) {
     }
     return (
         <div className="movie-card">
-            <img src={imageUrl} alt={movie.title} onClick={handleMovieClick} />
+            <img
+                src={imageUrl}
+                alt={movie.title}
+                onClick={handleMovieClick} />
             <div className="movie-info">
-                <h3 onClick={handleMovieClick}>{movie.title}</h3>
+                <h3 onClick={handleMovieClick}>
+                    {movie.title}
+                </h3>
                 <p>⭐ {movie.vote_average}</p>
-                <button onClick={handleFavorite}>{isFavorite ? "❌ Remove" : "❤️ Favorite"}</button>
+                <button onClick={handleFavorite}>
+                    {isFavorite
+                        ? "❌ Remove"
+                        : "❤️ Favorite"}
+                </button>
             </div>
         </div>
     );

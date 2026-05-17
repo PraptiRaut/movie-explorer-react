@@ -12,6 +12,12 @@ body {
     margin: 0;
 }
 
+h1,
+h2 {
+    margin-bottom: 1.5rem;
+    margin-top: 2rem;
+}
+
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -61,20 +67,22 @@ body {
 }
 
 .movie-card {
-    background-color: #222;
-    color: white;
+    background-color: #1c1c1c;
+    /* color: white; */
     border-radius: 10px;
     overflow: hidden;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
 }
 
 .movie-card:hover {
-    transform: scale(1.03);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
 }
 
 .movie-card img {
     width: 100%;
-    height: 320px;
+    height: 330px;
     object-fit: cover;
 }
 
@@ -82,27 +90,55 @@ body {
     padding: 1rem;
 }
 
-form {
-    display: flex;
-    gap: 1rem;
-    margin-top: 1.5rem;
+.movie-info h3 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
 }
 
-input {
+.movie-info p {
+    margin-bottom: 1rem;
+    color: #ccc;
+}
+
+.movie-info button {
+    width: 100%;
+    border: none;
+    padding: 0.7rem;
+    border-radius: 5px;
+    background-color: crimson;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.movie-info button:hover {
+    background-color: #e11d48;
+}
+
+.search-form {
+    display: flex;
+    gap: 1rem;
+    /* margin-top: 2rem; */
+    margin-bottom: 2rem;
+}
+
+.search-input {
     flex: 1;
-    padding: 0.8rem;
+    padding: 0.8rem 1rem;
     border: none;
     border-radius: 5px;
     font-size: 1rem;
 }
 
-button {
-    padding: 0.8rem 1.2rem;
+.search-btn {
+    padding: 0.8rem 1.5rem;
     border: none;
     border-radius: 5px;
     background-color: crimson;
     color: white;
     cursor: pointer;
+    font-weight: bold;
 }
 
 .movie-details {
@@ -116,7 +152,7 @@ button {
     background-position: center;
 }
 
-.overplay {
+.overlay {
     min-height: 100vh;
     background: rgba(0, 0, 0, 0.7);
     display: flex;
@@ -130,23 +166,23 @@ button {
     border-radius: 10px;
 }
 
-.details.content {
+.details-content {
     max-width: 700px;
 }
 
-.details.content h1 {
+.details-content h1 {
     font-size: 3rem;
     margin-bottom: 1rem;
 }
 
-.details.content p {
+.details-content p {
     margin-bottom: 1rem;
     line-height: 1.6;
 }
 
 .back-btn {
     margin-bottom: 1.5rem;
-    padding: 0.7rem, 1.2rem;
+    padding: 0.7rem 1.2rem;
     border: none;
     border-radius: 5px;
     background-color: crimson;
@@ -217,7 +253,7 @@ button {
 }
 
 @media (max-width:768px) {
-    .overplay {
+    .overlay {
         flex-direction: column;
         text-align: center;
     }
