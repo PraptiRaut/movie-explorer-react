@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 function SearchBar({ searchTerm, setSearchTerm, onSearch, movies, recentlyViewed }) {
 
     const [suggestions, setSuggestions] = useState([]);
+    const [activeIndex, setActiveIndex] = useState(-1);
     const searchRef = useRef(null);
 
     useEffect(() => {
@@ -46,6 +47,29 @@ function SearchBar({ searchTerm, setSearchTerm, onSearch, movies, recentlyViewed
         setSearchTerm("");
     }
 
+    function handleKeyDown(event) {
+        if (suggestions.length === 0) return;
+        if (event.key === "ArrowDown") {
+            setActiveIndex((prev) => prev < suggestions.length - 1 ? prev + 1 : prev);
+        }
+        else if (event.key === "ArrowUp") {
+            setActiveIndex((prev) => prev > 0 ? prev - 1 : prev);
+        }
+        else if (event.key === "Enter") {
+            event.preventDefault();
+            if (activeIndex >= 0) {
+                setSearchTerm(suggestions[activeIndex].title);
+                setSuggestions([]);
+                setActiveIndex(-1);
+            }
+        }
+        else if (event.key === "Escape") {
+            setSuggestions([]);
+            setActiveIndex(-1);
+        }
+
+    }
+
     return (
         <div className="search-container" ref={searchRef}>
             <form
@@ -56,7 +80,8 @@ function SearchBar({ searchTerm, setSearchTerm, onSearch, movies, recentlyViewed
                     type="text"
                     placeholder="Search movies..."
                     value={searchTerm}
-                    onChange={handleChange} />
+                    onChange={handleChange}
+                    onKeyDown={handleKeyDown} />
 
                 <button
                     className="search-btn"
@@ -64,10 +89,13 @@ function SearchBar({ searchTerm, setSearchTerm, onSearch, movies, recentlyViewed
 
                 {suggestions.length > 0 && (
                     <ul className="suggestions-list">
-                        {suggestions.map((movie) => (
+                        {suggestions.map((movie, index) => (
                             <li
                                 key={movie.id}
-                                className="suggestion-item"
+                                className={`suggestion-item ${index === activeIndex
+                                    ? "active-suggestion"
+                                    : ""
+                                    }`}
                                 onClick={() => {
                                     setSearchTerm(movie.title);
                                     setSuggestions([]);

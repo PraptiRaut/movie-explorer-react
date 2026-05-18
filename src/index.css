@@ -175,6 +175,10 @@ h2 {
     background-color: #2d2d2d;
 }
 
+.active-suggestion {
+    background-color: #3a3a3a;
+}
+
 .movie-details {
     min-height: 100vh;
     color: white;
