@@ -146,6 +146,35 @@ h2 {
     font-weight: bold;
 }
 
+.search-container {
+    position: relative;
+}
+
+.suggestions-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background-color: #1c1c1c;
+    border-radius: 8px;
+    margin-top: 0.5rem;
+    overflow: hidden;
+}
+
+.suggestion-item {
+    padding: 0.8rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.suggestion-item:hover {
+    background-color: #2d2d2d;
+}
+
 .movie-details {
     min-height: 100vh;
     color: white;

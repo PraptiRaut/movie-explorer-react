@@ -13,6 +13,7 @@ function Home({ favorites, addToFavorites, recentlyViewed, removeFromFavorites }
     const [searchTerm, setSearchTerm] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
+    const [suggestionMovies, setSuggestionMovies] = useState([]);
 
     async function loadMovies() {
         try {
@@ -22,6 +23,7 @@ function Home({ favorites, addToFavorites, recentlyViewed, removeFromFavorites }
             const popularMovies = await getPopularMovies();
 
             setMovies(popularMovies);
+            setSuggestionMovies(popularMovies);
         } catch (error) {
             setError("Failed to load movies");
         } finally {
@@ -33,11 +35,11 @@ function Home({ favorites, addToFavorites, recentlyViewed, removeFromFavorites }
         loadMovies();
     }, []);
 
-    useEffect(() => {
-        if (searchTerm.trim() === "") {
-            loadMovies();
-        }
-    }, [searchTerm])
+    // useEffect(() => {
+    //     if (searchTerm.trim() === "") {
+    //         loadMovies();
+    //     }
+    // }, [searchTerm])
 
     async function handleSearch() {
 
@@ -67,7 +69,7 @@ function Home({ favorites, addToFavorites, recentlyViewed, removeFromFavorites }
     // }
     return (
         <div>
-            <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} onSearch={handleSearch} />
+            <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} onSearch={handleSearch} movies={suggestionMovies} recentlyViewed={recentlyViewed} />
             {recentlyViewed.length > 0 && (
                 <>
                     <h2>Recently Viewed</h2>
