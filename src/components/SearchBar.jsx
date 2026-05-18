@@ -6,7 +6,7 @@ function SearchBar({ searchTerm, setSearchTerm, onSearch }) {
         setSearchTerm(event.target.value);
     }
 
-    function handleSubmit() {
+    function handleSubmit(event) {
         event.preventDefault();
         onSearch();
     }
