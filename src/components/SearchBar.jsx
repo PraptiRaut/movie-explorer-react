@@ -1,8 +1,26 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 function SearchBar({ searchTerm, setSearchTerm, onSearch, movies, recentlyViewed }) {
 
     const [suggestions, setSuggestions] = useState([]);
+    const searchRef = useRef(null);
+
+    useEffect(() => {
+        function handleClickOutside(event) {
+            if (
+                searchRef.current &&
+                !searchRef.current.contains(event.target)
+            ) {
+                setSuggestions([]);
+            }
+
+        }
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        }
+    }, []);
 
     function handleChange(event) {
         const value = event.target.value;
@@ -29,7 +47,7 @@ function SearchBar({ searchTerm, setSearchTerm, onSearch, movies, recentlyViewed
     }
 
     return (
-        <div className="search-container">
+        <div className="search-container" ref={searchRef}>
             <form
                 className="search-form"
                 onSubmit={handleSubmit}>
