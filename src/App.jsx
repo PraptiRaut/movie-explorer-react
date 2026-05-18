@@ -4,7 +4,7 @@ import Home from "./pages/Home";
 import Favorites from "./pages/Favorites";
 import NotFound from "./pages/NotFound";
 import MovieDetails from "./pages/MovieDetails";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 function App() {
@@ -22,26 +22,27 @@ function App() {
     setRecentlyViewed(storedReccentlyViewed);
   }, []);
 
-  function addToFavorites(movie) {
-    const alreadyExists = favorites.some((fav) => fav.id === movie.id);
+  const addToFavorites = useCallback(
+    (movie) => {
+      const alreadyExists = favorites.some((fav) => fav.id === movie.id);
 
-    if (alreadyExists) {
-      return;
-    }
-    const updatedFavorites = [...favorites, movie];
-    setFavorites(updatedFavorites);
-    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+      if (alreadyExists) {
+        return;
+      }
+      const updatedFavorites = [...favorites, movie];
+      setFavorites(updatedFavorites);
+      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
 
-    toast.success("Added to favorites");
-  }
+      toast.success("Added to favorites");
+    }, [favorites]);
 
-  function removeFromFavorites(movieId) {
+  const removeFromFavorites = useCallback((movieId) => {
     const updatedFavorites = favorites.filter((movie) => movie.id !== movieId);
     setFavorites(updatedFavorites);
     localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
 
     toast.info("Removed from favorites");
-  }
+  }, [favorites])
 
   function addToRecentlyViewed(movie) {
     const filteredMovies = recentlyViewed.filter((item) => item.id !== movie.id);
