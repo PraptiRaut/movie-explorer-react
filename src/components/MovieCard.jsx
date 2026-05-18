@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import React from "react";
 
 function MovieCard({ movie, favorites, addToFavorites, removeFromFavorites }) {
 
@@ -40,4 +41,4 @@ function MovieCard({ movie, favorites, addToFavorites, removeFromFavorites }) {
     );
 }
 
-export default MovieCard;
+export default React.memo(MovieCard);
