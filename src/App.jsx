@@ -5,6 +5,7 @@ import Favorites from "./pages/Favorites";
 import NotFound from "./pages/NotFound";
 import MovieDetails from "./pages/MovieDetails";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 function App() {
 
@@ -30,12 +31,16 @@ function App() {
     const updatedFavorites = [...favorites, movie];
     setFavorites(updatedFavorites);
     localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+
+    toast.success("Added to favorites");
   }
 
   function removeFromFavorites(movieId) {
     const updatedFavorites = favorites.filter((movie) => movie.id !== movieId);
     setFavorites(updatedFavorites);
     localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+
+    toast.info("Removed from favorites");
   }
 
   function addToRecentlyViewed(movie) {
