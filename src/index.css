@@ -122,6 +122,8 @@ h2 {
 }
 
 .search-form {
+    /* position: relative;
+    align-items: center; */
     display: flex;
     gap: 1rem;
     /* margin-top: 2rem; */
@@ -154,6 +156,7 @@ h2 {
     position: absolute;
     top: 100%;
     left: 0;
+    /* width: calc(100% - 140px); */
     width: 100%;
     z-index: 1000;
     list-style: none;

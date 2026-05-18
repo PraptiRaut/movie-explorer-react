@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 function SearchBar({ searchTerm, setSearchTerm, onSearch, movies, recentlyViewed }) {
 
@@ -23,6 +23,10 @@ function SearchBar({ searchTerm, setSearchTerm, onSearch, movies, recentlyViewed
         }
     }, []);
 
+    const allMovies = useMemo(() => {
+        return [...movies, ...recentlyViewed];
+    }, [movies, recentlyViewed]);
+
     function handleChange(event) {
         const value = event.target.value;
         setSearchTerm(value);
@@ -31,7 +35,7 @@ function SearchBar({ searchTerm, setSearchTerm, onSearch, movies, recentlyViewed
             setSuggestions([]);
             return;
         }
-        const allMovies = [...movies, ...recentlyViewed];
+        // const allMovies = [...movies, ...recentlyViewed];
         const filteredMovies = allMovies.filter((movie) =>
             movie.title.toLowerCase().includes(value.toLowerCase()));
         setSuggestions(filteredMovies.slice(0, 5));
