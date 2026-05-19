@@ -11,6 +11,7 @@ function Home({ favorites, addToFavorites, recentlyViewed, removeFromFavorites }
 
     const [movies, setMovies] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
+    const [isSearching, setIsSearching] = useState(false);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
     const [suggestionMovies, setSuggestionMovies] = useState([]);
@@ -21,9 +22,10 @@ function Home({ favorites, addToFavorites, recentlyViewed, removeFromFavorites }
             setError("");
 
             const popularMovies = await getPopularMovies();
-
             setMovies(popularMovies);
             setSuggestionMovies(popularMovies);
+            setIsSearching(false);
+
         } catch (error) {
             setError("Failed to load movies");
         } finally {
@@ -50,6 +52,7 @@ function Home({ favorites, addToFavorites, recentlyViewed, removeFromFavorites }
         try {
             setLoading(true);
             setError("");
+            setIsSearching(true);
 
             const results = await searchMovies(query);
             setMovies(results);
@@ -61,6 +64,11 @@ function Home({ favorites, addToFavorites, recentlyViewed, removeFromFavorites }
         }
     }
 
+    function clearSearch() {
+        loadMovies();
+    }
+
+
     // if (loading) {
     //     return <Loader />;
     // }
@@ -70,7 +78,7 @@ function Home({ favorites, addToFavorites, recentlyViewed, removeFromFavorites }
     return (
         <div>
             <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} onSearch={handleSearch} movies={suggestionMovies} recentlyViewed={recentlyViewed} />
-            {recentlyViewed.length > 0 && (
+            {!isSearching && recentlyViewed.length > 0 && (
                 <>
                     <h2>Recently Viewed</h2>
                     <div className="movies-grid">
@@ -80,7 +88,18 @@ function Home({ favorites, addToFavorites, recentlyViewed, removeFromFavorites }
                     </div>
                 </>
             )}
-            <h2>Popular Movies</h2>
+            <div className="section-header">
+                <h2>
+                    {isSearching
+                        ? "Search Results"
+                        : "Popular Movies"}
+                </h2>
+
+                {isSearching && (
+                    <button className="clear-search-btn"
+                        onClick={clearSearch}>clear Search</button>
+                )}
+            </div>
             {error && (<ErrorMessage message={error} />)}
 
             {/* {movies.length === 0 ? (
