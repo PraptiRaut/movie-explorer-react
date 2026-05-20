@@ -66,9 +66,10 @@ h2 {
 
 .movies-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 220px));
     gap: 1.5rem;
     margin-top: 2rem;
+    justify-content: center;
 }
 
 .movie-card {
